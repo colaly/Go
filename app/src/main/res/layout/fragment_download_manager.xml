@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.xuexiang.xui.widget.statelayout.MultipleStatusView
+        android:id="@+id/statusView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:stf_animationEnabled="true"
+        app:stf_inAnimation="@android:anim/slide_in_left"
+        app:stf_outAnimation="@android:anim/slide_out_right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.xuexiang.xui.widget.button.ButtonView
+                    android:id="@+id/resumeAllTask"
+                    style="@style/ButtonView.Blue"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="恢复所有" />
+
+                <com.xuexiang.xui.widget.button.ButtonView
+                    android:id="@+id/stopAllTask"
+                    style="@style/ButtonView.Green"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="停止所有" />
+
+                <com.xuexiang.xui.widget.button.ButtonView
+                    android:id="@+id/removeAllTask"
+                    style="@style/ButtonView.Gray"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="删除所有" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/videoList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/gray_f9"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
+    </com.xuexiang.xui.widget.statelayout.MultipleStatusView>
+</LinearLayout>

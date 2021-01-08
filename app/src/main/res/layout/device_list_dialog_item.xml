@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:background="?selectableItemBackground"
+    android:paddingTop="10dp">
+
+    <ImageView
+            android:id="@+id/icon"
+            android:layout_width="36.0dip"
+            android:layout_height="36.0dip"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="40.0dip"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@mipmap/icon_device" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15.0dip"
+        android:layout_marginEnd="60.0dip"
+        android:layout_toEndOf="@id/icon">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="14.0sp" />
+
+        <TextView
+            android:id="@+id/ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginTop="3.0dip"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="12.0sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/connect"
+        android:layout_width="18.0dip"
+        android:layout_height="18.0dip"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="40.0dip"
+        android:contentDescription="@string/app_name" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:layout_marginBottom="0dp"
+        android:background="@color/gray_line" />
+</RelativeLayout>

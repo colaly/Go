@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.xuexiang.xui.widget.actionbar.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:tb_barHeight="?attr/actionBarSize"
+            app:tb_dividerColor="?attr/colorPrimary"
+            app:tb_immersive="false"
+            app:tb_leftImageResource="@mipmap/icon_back_white"
+            app:tb_titleText="视频搜索"
+            app:tb_useThemeColor="false" />
+
+        <com.xuexiang.xui.widget.searchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_tips"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tips"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text="最近搜索" />
+
+        <ImageView
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_delete" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_f9" />
+
+    <com.xuexiang.xui.widget.flowlayout.FlowTagLayout
+        android:id="@+id/tag"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
+        app:ftl_check_mode="single" />
+
+    <com.xuexiang.xui.widget.statelayout.MultipleStatusView
+        android:id="@+id/statusView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:stf_animationEnabled="true"
+        app:stf_inAnimation="@android:anim/slide_in_left"
+        app:stf_outAnimation="@android:anim/slide_out_right">
+
+        <ListView
+            android:id="@+id/videoList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.xuexiang.xui.widget.statelayout.MultipleStatusView>
+</LinearLayout>

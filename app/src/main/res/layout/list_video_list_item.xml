@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/list_video_list_item_img"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/logo" />
+
+    <TextView
+        android:id="@+id/list_video_list_item__note"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/list_video_list_item_img"
+        android:layout_alignBottom="@id/list_video_list_item_img"
+        android:background="?attr/colorPrimary"
+        android:gravity="center"
+        android:text="高清HD"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/list_video_list_item_img"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/list_video_list_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:text="我是标题"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/list_video_list_item_director"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="导演：大唐"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/list_video_list_item_actor"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="演员：李白，杜甫"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/list_video_list_item_type"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="类型：电视剧"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/list_video_list_item_form"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="来源：最大云"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/list_video_list_item_last"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="更新时间：2020-02-25 12:12:12"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

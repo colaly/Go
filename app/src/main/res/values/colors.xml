@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="main">#FF3B5B</color>
+    <color name="blue">#4682B4</color>
+    <color name="note">#EF4238</color>
+    <!--灰色 -->
+    <color name="gray">#ff808080</color>
+    <color name="gray_f9">#fff9f9f9</color>
+    <color name="gray_666">#ff666666</color>
+    <color name="gray_line">#ffe1e1e1</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="video">#303030</color>
+    <color name="videoText">#AAAAAA</color>
+    <color name="videotips">#5C5C5C</color>
+    <color name="color_bd_bd_bd">#ffbdbdbd</color>
+
+    <color name="toast_success_color">#EF4238</color>
+    <color name="toast_info_color">#EF4238</color>
+    <color name="toast_warning_color">#EF4238</color>
+</resources>

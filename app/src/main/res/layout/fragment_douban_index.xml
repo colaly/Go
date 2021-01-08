@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/app_slogn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="你的追剧搜索小助手"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:id="@+id/rlyt_search"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/shape_bg_home_top_search">
+
+            <ImageView
+                android:layout_width="18.0dip"
+                android:layout_height="18.0dip"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15.0dip"
+                android:background="@mipmap/icon_search" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40.0dip"
+                android:padding="10dp"
+                android:text="搜索影视、宁可少字、不要错字、勿搜符号"
+                android:textColor="@color/color_bd_bd_bd"
+                android:textSize="14.0sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="62.0dip"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/llyt_1"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="25.0dip"
+                        android:layout_height="25.0dip"
+                        android:layout_marginTop="4.0dip"
+                        android:background="@drawable/ic_top_yugao" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6.0dip"
+                        android:text="趣享运动"
+                        android:textColor="@color/gray_f9"
+                        android:textSize="12.0sp" />
+                </LinearLayout>
+
+                <!--<LinearLayout
+                    android:id="@+id/llyt_2"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="25.0dip"
+                        android:layout_height="25.0dip"
+                        android:layout_marginTop="4.0dip"
+                        android:background="@drawable/ic_top_rank" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6.0dip"
+                        android:text="预告片"
+                        android:textColor="@color/gray_f9"
+                        android:textSize="12.0sp" />
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/llyt_3"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="25.0dip"
+                        android:layout_height="25.0dip"
+                        android:layout_marginTop="4.0dip"
+                        android:background="@drawable/ic_top_down" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6.0dip"
+                        android:text="缓 存"
+                        android:textColor="@color/gray_f9"
+                        android:textSize="12.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llyt_4"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30.0dip"
+                        android:layout_height="30.0dip"
+                        android:layout_marginTop="2.0dip"
+                        android:background="@drawable/ic_top_collect" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3.0dip"
+                        android:text="收 藏"
+                        android:textColor="@color/gray_f9"
+                        android:textSize="12.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llyt_5"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30.0dip"
+                        android:layout_height="30.0dip"
+                        android:layout_marginTop="2.0dip"
+                        android:background="@drawable/ic_top_history" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3.0dip"
+                        android:text="反 馈"
+                        android:textColor="@color/gray_f9"
+                        android:textSize="12.0sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5.0dip"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginTop="3.0dip"
+                android:layout_marginRight="15.0dip"
+                android:background="#fff6f6f6" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.xuexiang.xui.widget.tabbar.TabSegment
+        android:id="@+id/tabSegment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        app:ts_normal_color="@color/gray_666"
+        app:ts_selected_color="?attr/colorPrimary" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

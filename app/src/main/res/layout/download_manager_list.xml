@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:orientation="horizontal">
+
+    <com.xuexiang.xui.widget.textview.label.LabelTextView
+        android:id="@+id/tv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:text="一人之下 第二季"
+        app:label_backgroundColor="#03A9F4"
+        app:label_distance="15dp"
+        app:label_orientation="LEFT_TOP"
+        app:label_text="下载中"
+        app:label_textSize="10sp"
+        app:label_textStyle="BOLD_ITALIC" />
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="10%"
+        android:textColor="@color/gray"
+        android:padding="16dp" />
+
+    <Button
+        android:id="@+id/operat"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/gray_f9"
+        android:text="继续"
+        android:textColor="@color/gray" />
+</LinearLayout>

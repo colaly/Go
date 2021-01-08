@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white">
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
+
+        <TextView
+                android:id="@+id/tv_collect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableStart="@mipmap/icon_back_white"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:text="@string/collection"
+                android:textColor="@color/white"
+                android:focusable="true"/>
+    </androidx.appcompat.widget.Toolbar>
+    <com.xuexiang.xui.widget.statelayout.MultipleStatusView
+        android:id="@+id/statusView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:stf_animationEnabled="true"
+        app:stf_inAnimation="@android:anim/slide_in_left"
+        app:stf_outAnimation="@android:anim/slide_out_right">
+
+        <ListView
+            android:id="@+id/videoList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.xuexiang.xui.widget.statelayout.MultipleStatusView>
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hot_video">
+        <item>寄生虫</item>
+        <item>嗝嗝老师</item>
+        <item>半个喜剧</item>
+        <item>致允熙</item>
+        <item>小萝莉的猴神大叔</item>
+        <item>小丑</item>
+        <item>宇宙尽头</item>
+        <item>三生三世枕上书</item>
+        <item>忍冬艳蔷薇</item>
+        <item>上古密约</item>
+        <item>下一站是幸福</item>
+        <item>大唐女法医</item>
+        <item>决胜法庭</item>
+        <item>破局1950</item>
+        <item>刘老根3</item>
+        <item>精英律师</item>
+        <item>锦衣之下</item>
+        <item>将夜2</item>
+        <item>完美关系</item>
+    </string-array>
+
+    <string-array name="category_category">
+        <item>全部</item>
+        <item>电影</item>
+        <item>电视剧</item>
+        <item>综艺</item>
+        <item>动漫</item>
+        <item>纪录片</item>
+    </string-array>
+
+    <string-array name="category_type">
+        <item>全部</item>
+        <item>剧情</item>
+        <item>喜剧</item>
+        <item>动作</item>
+        <item>爱情</item>
+        <item>科幻</item>
+        <item>动画</item>
+        <item>悬疑</item>
+        <item>惊悚</item>
+        <item>恐怖</item>
+        <item>犯罪</item>
+        <item>音乐</item>
+        <item>歌舞</item>
+        <item>传记</item>
+        <item>历史</item>
+        <item>战争</item>
+        <item>西部</item>
+        <item>奇幻</item>
+        <item>冒险</item>
+        <item>灾难</item>
+        <item>武侠</item>
+    </string-array>
+
+    <string-array name="category_area">
+        <item>全部</item>
+        <item>大陆</item>
+        <item>香港</item>
+        <item>台湾</item>
+        <item>美国</item>
+        <item>日本</item>
+        <item>韩国</item>
+        <item>英国</item>
+        <item>印度</item>
+        <item>泰国</item>
+    </string-array>
+
+    <string-array name="category_years">
+        <item>全部</item>
+        <item>2020</item>
+        <item>2019</item>
+        <item>2010年代</item>
+        <item>2000年代</item>
+        <item>90年代</item>
+        <item>80年代</item>
+        <item>70年代</item>
+        <item>60年代</item>
+        <item>更早</item>
+
+    </string-array>
+</resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--  <androidx.appcompat.widget.Toolbar
+          android:id="@+id/titlebar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="?attr/colorPrimary"
+          app:contentInsetStart="0dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:text="我的"
+              android:textColor="@color/white"
+              android:textSize="16sp" />
+      </androidx.appcompat.widget.Toolbar>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical"
+        android:paddingTop="100dp"
+        android:paddingBottom="60dp">
+        <com.xuexiang.xui.widget.imageview.RadiusImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/logo"
+            app:riv_corner_radius="30dp" />
+        <TextView
+            android:id="@+id/slogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="世界·想看就看"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--<com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/theme"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="主题设置"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />-->
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/download"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="下载管理"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/clear"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="清除缓存"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="问题反馈"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/disclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="用户协议"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/share"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="软件分享"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/update"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="软件更新"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/xui_config_color_gray_9"
+                app:sDividerLineType="both"
+                app:sLeftTextString="软件版本"
+                app:sRightIconRes="@drawable/fragmentation_ic_right" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
