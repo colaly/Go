@@ -6,20 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
 
 import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
-import com.qgfun.go.adapter.DouBanPagerFragmentAdapter;
 import com.qgfun.go.base.BaseMainFragment;
-import com.qgfun.go.entity.CategoriesData;
-import com.qgfun.go.entity.Category;
-import com.xuexiang.xui.widget.tabbar.TabSegment;
 
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -27,7 +18,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  * @author LLY
  * date: 2020/4/7 13:15
  * package name: com.qgfun.beauty.fragment
- * description：TODO
  */
 public class DouBanRootFragment extends BaseMainFragment {
     

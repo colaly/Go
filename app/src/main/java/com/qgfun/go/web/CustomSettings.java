@@ -19,8 +19,10 @@ import static android.webkit.WebView.setWebContentsDebuggingEnabled;
  * @author LLY
  */
 public class CustomSettings extends AbsAgentWebSettings {
-    public CustomSettings() {
+    private boolean isIPTV;
+    public CustomSettings(boolean isIPTV) {
         super();
+        this.isIPTV=isIPTV;
     }
 
     @Override
@@ -88,7 +90,11 @@ public class CustomSettings extends AbsAgentWebSettings {
         mWebSettings.setAppCachePath(dir);
 
         //缓存文件最大值
-        mWebSettings.setUserAgentString("Mozilla/5.0 (Linux; Android 7.1.2; OXF-AN10 Build/N2G48H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.158 Safari/537.36 MicroMessengeriptv/1.2.3 VideoPlayer god/3.0.0 MPC 2.4.23 mitv baiduboxapp Html5Plus/1.0 (Immersed/24.166666),Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36");
+        if (isIPTV){
+            mWebSettings.setUserAgentString("Mozilla/5.0 (Linux; Android 7.1.2; OXF-AN10 Build/N2G48H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.158 Safari/537.36 MicroMessengeriptv/1.2.3 VideoPlayer god/3.0.0 MPC 2.4.23 mitv baiduboxapp Html5Plus/1.0 (Immersed/24.166666),Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36");
+        }else {
+            mWebSettings.setUserAgentString("Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36");
+        }
         return this;
     }
 }

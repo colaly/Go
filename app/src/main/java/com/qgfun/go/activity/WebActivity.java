@@ -104,7 +104,7 @@ public class WebActivity extends BaseActivity implements View.OnClickListener {
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mStatusView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT))
                 .setCustomIndicator(new CoolIndicatorLayout(this))
-                .setAgentWebWebSettings(new CustomSettings())
+                .setAgentWebWebSettings(new CustomSettings(false))
                 .setWebViewClient(customWebViewClient)
                 .setWebChromeClient(new CustomWebChromeClient(this))
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)

@@ -13,7 +13,6 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
  * @author LLY
  * date: 2020/4/8 11:27
  * package name: com.qgfun.beauty.base
- * description：TODO
  */
 public class BaseBackFragment extends SwipeBackFragment {
     private static final String TAG = "Fragmentation";

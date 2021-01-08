@@ -152,7 +152,7 @@ public class DouBanIndexFragment extends BaseMainFragment {
     @OnClick({R.id.llyt_1})
     public void third() {
         Intent intent = new Intent(_mActivity, WebActivity.class);
-        intent.putExtra("url", "http://api.qgfun.com/sport");
+        intent.putExtra("url", "http://api.qgfun.com/free");
         startActivity(intent);
     }
 

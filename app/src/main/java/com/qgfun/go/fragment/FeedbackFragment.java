@@ -93,7 +93,7 @@ public class FeedbackFragment extends BaseMainFragment {
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mStatusView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT))
                 .setCustomIndicator(new CoolIndicatorLayout(_mActivity))
-                .setAgentWebWebSettings(new CustomSettings())
+                .setAgentWebWebSettings(new CustomSettings(false))
                 .setWebViewClient(customWebViewClient)
                 .setWebChromeClient(new CustomWebChromeClient(_mActivity))
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)

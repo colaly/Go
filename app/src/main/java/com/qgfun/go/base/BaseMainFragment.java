@@ -11,7 +11,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  * @author LLY
  * date: 2020/4/8 11:23
  * package name: com.qgfun.beauty.base
- * description：TODO
  */
 public class BaseMainFragment extends SupportFragment {
     // 再点一次退出程序时间设置
