@@ -15,11 +15,11 @@ import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
 import com.qgfun.go.activity.VideoPlayerActivity;
 import com.qgfun.go.adapter.UpdateRecycleAdapter;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.Category;
 import com.qgfun.go.entity.DataCache;
 import com.qgfun.go.entity.DataCache_Table;
 import com.qgfun.go.entity.DataHolder;
-import com.qgfun.go.entity.UrlResources;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.NetTool;
 import com.qgfun.go.util.ResourceUtils;
@@ -44,6 +44,7 @@ import io.reactivex.schedulers.Schedulers;
 import me.yokeyword.fragmentation.SupportFragment;
 
 import static com.qgfun.go.util.ResourceUtils.changeUrl;
+import static com.qgfun.go.util.ResourceUtils.getAppInfo;
 
 /**
  * @author LLY
@@ -68,7 +69,7 @@ public class UpdatePagerFragment extends SupportFragment {
     private boolean isFirst = true;
     private int total = 1;
     private int current = 1;
-    UrlResources zuida = ResourceUtils.getUrlSource().get("zuida");
+    AppInfo.Resources resources;
 
     public static UpdatePagerFragment newInstance(@NonNull Category category) {
         UpdatePagerFragment fragment = new UpdatePagerFragment();
@@ -112,7 +113,8 @@ public class UpdatePagerFragment extends SupportFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        AppInfo appInfo = getAppInfo(_mActivity);
+        resources = appInfo.getResources().get(appInfo.getIndex());
         View view = inflater.inflate(R.layout.fragment_view_page, container, false);
         ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
@@ -120,7 +122,7 @@ public class UpdatePagerFragment extends SupportFragment {
         DataCache dataCache = SQLite.select()
                 //查询第一个
                 .from(DataCache.class)
-                .where(DataCache_Table.url.eq(changeUrl(zuida.getUrl() + mCategory.getId())))
+                .where(DataCache_Table.url.eq(changeUrl(resources.getUrl() + mCategory.getId())))
                 .querySingle();
         if (dataCache != null) {
             try {
@@ -192,7 +194,7 @@ public class UpdatePagerFragment extends SupportFragment {
             DataCache dataCache = SQLite.select()
                     //查询第一个
                     .from(DataCache.class)
-                    .where(DataCache_Table.url.eq(changeUrl(zuida.getUrl() + mCategory.getId())))
+                    .where(DataCache_Table.url.eq(changeUrl(resources.getUrl() + mCategory.getId())))
                     .querySingle();
             if (dataCache != null) {
                 try {
@@ -212,7 +214,7 @@ public class UpdatePagerFragment extends SupportFragment {
         }
         int finalPage = page;
         Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {
-            emitter.onNext(ResourceUtils.newVideo(zuida, mCategory.getId(), finalPage + ""));
+            emitter.onNext(ResourceUtils.newVideo(resources, mCategory.getId(), finalPage + ""));
             emitter.onComplete();
         }).subscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())

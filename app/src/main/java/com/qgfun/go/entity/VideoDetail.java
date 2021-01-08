@@ -22,14 +22,14 @@ public class VideoDetail implements Serializable {
     private String des;
 
     private List<VideoUrl> videoUrls;
-    private UrlResources urlResources;
+    private AppInfo.Resources resources;
     private String last;
 
     public VideoDetail() {
         super();
     }
 
-    public VideoDetail(String id, String name, String type, String pic, String note,String actor, String director, String des, List<VideoUrl> videoUrls, UrlResources urlResources, String last) {
+    public VideoDetail(String id, String name, String type, String pic, String note, String actor, String director, String des, List<VideoUrl> videoUrls, AppInfo.Resources resources, String last) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -39,7 +39,7 @@ public class VideoDetail implements Serializable {
         this.director = director;
         this.des = des;
         this.videoUrls = videoUrls;
-        this.urlResources = urlResources;
+        this.resources = resources;
         this.last = last;
     }
 
@@ -123,12 +123,12 @@ public class VideoDetail implements Serializable {
         this.last = last;
     }
 
-    public UrlResources getUrlResources() {
-        return urlResources;
+    public AppInfo.Resources getResources() {
+        return resources;
     }
 
-    public void setUrlResources(UrlResources urlResources) {
-        this.urlResources = urlResources;
+    public void setResources(AppInfo.Resources resources) {
+        this.resources = resources;
     }
 
     @Override

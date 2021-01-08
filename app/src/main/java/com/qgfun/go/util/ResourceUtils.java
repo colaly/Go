@@ -7,12 +7,12 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.orhanobut.logger.Logger;
 import com.qgfun.go.entity.AppInfo;
+import com.qgfun.go.entity.CategoriesData;
 import com.qgfun.go.entity.DataCache;
 import com.qgfun.go.entity.DataCache_Table;
 import com.qgfun.go.entity.DouBanVideoInfo;
 import com.qgfun.go.entity.TvInfo;
 import com.qgfun.go.entity.TvPlayInfo;
-import com.qgfun.go.entity.UrlResources;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.entity.VideoIndex;
 import com.qgfun.go.entity.VideoUrl;
@@ -24,10 +24,7 @@ import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.ResponseBody;
 import ren.yale.android.cachewebviewlib.utils.AppUtils;
@@ -62,13 +59,23 @@ public class ResourceUtils {
                 if (!isEmpty) {
                     appInfo = JSON.parseObject(dataCache.getData(), AppInfo.class);
                 } else {
-                     appInfo=new AppInfo("","",AppUtils.getVersionCode(context),"https://cdn.jsdelivr.net/gh/colally/app/go/app/new_year_one.png","http://fun.qgfun.com",false,1);
+                    appInfo=new AppInfo("",
+                             "",
+                             AppUtils.getVersionCode(context),
+                             "https://cdn.jsdelivr.net/gh/colally/app/go/app/new_year_one.png",
+                             "http://fun.qgfun.com",
+                             false,1, 0, CategoriesData.getResources());
                 }
             }
+            dataCache=new DataCache();
+            dataCache.setUrl(changeUrl(url));
+            dataCache.setLast(System.currentTimeMillis()/1000);
+            dataCache.setData(JSON.toJSONString(appInfo));
+            dataCache.save();
         } else {
             appInfo = JSON.parseObject(dataCache.getData(), AppInfo.class);
         }
-
+        SPTool.putString(context, "appInfo", JSON.toJSONString(appInfo));
         return appInfo;
     }
 
@@ -164,19 +171,9 @@ public class ResourceUtils {
     }
 
 
-    public static Map<String, UrlResources> getUrlSource() {
-        Map<String, UrlResources> yuan = new HashMap<>();
-        yuan.put("ok", new UrlResources("ok","http://cj.okzy.tv/inc/apickm3u8s.php", "OK云"));
-        yuan.put("kk", new UrlResources("kk","http://caiji.kuyun98.com/inc/s_ldg_kkm3u8.php", "酷云"));
-        yuan.put("zuida",new UrlResources("zuida","http://www.zdziyuan.com/inc/s_api_zuidam3u8.php", "最大云"));
-        yuan.put("605", new UrlResources("605","http://www.605zy.co/inc/605m3u8.php", "65云"));
-        yuan.put("yj", new UrlResources("yj","http://cj.yongjiuzyw.com/inc/yjm3u8.php", "永久云"));
-        yuan.put("xin", new UrlResources("xin","http://api.zuixinapi.com/inc/apixinm3u8.php", "最新云"));
-        yuan.put("ali", new UrlResources("ali","http://zy.haodanxia.com/api.php/provide/vod/at/xml/", "阿里云"));
-        yuan.put("mahua", new UrlResources("mahua","https://www.mhapi123.com/inc/api.php", "麻花云"));
-        yuan.put("bj", new UrlResources("bj", "http://cj.bajiecaiji.com/inc/seabjm3u8.php", "背景云"));
-        yuan.put("88", new UrlResources("88","http://www.88zyw.net/inc/m3u8.php", "88云"));
-        return yuan;
+    public static AppInfo getAppInfo(Context context) {
+
+        return JSON.parseObject(SPTool.getString(context, "appInfo"), AppInfo.class);
     }
 
     /*public static String getFrom(String key) {
@@ -198,7 +195,7 @@ public class ResourceUtils {
         return new String[]{"ok", "kk", "zuida", "605", "yj", "605",  "xin", "ali", "mahua", "bj", "88"};
     }*/
 
-    public static List<VideoIndex> getVideoIndex(String key, String tid, String page, UrlResources sources) {
+    public static List<VideoIndex> getVideoIndex(String key, String tid, String page, AppInfo.Resources sources) {
 
         List<VideoIndex> list = new ArrayList<>();
         try {
@@ -215,7 +212,7 @@ public class ResourceUtils {
                     //String des = element.getElementsByTag("des").first().text();
                     String last = element.getElementsByTag("last").first().text();
                     Log.i("getVideoIndex:%s", "id:" + id + ",name:" + name + ",type:" + type + ",last:" + last);
-                    list.add(new VideoIndex(id, name, type, sources.getFrom(), last));
+                    list.add(new VideoIndex(id, name, type, sources.getName(), last));
                 } catch (NullPointerException e) {
                     Logger.e(e.getMessage());
                 }
@@ -226,7 +223,7 @@ public class ResourceUtils {
         return list;
     }
 
-    public static List<VideoDetail> getVideoDetail(String id, UrlResources sources) {
+    public static List<VideoDetail> getVideoDetail(String id, AppInfo.Resources sources) {
 
         List<VideoDetail> list = new ArrayList<>();
         try {
@@ -263,7 +260,7 @@ public class ResourceUtils {
         return list;
     }
 
-    public static List<VideoDetail> newVideo(UrlResources sources, String tid, String pg) {
+    public static List<VideoDetail> newVideo(AppInfo.Resources sources, String tid, String pg) {
         List<VideoDetail> list = new ArrayList<>();
         //影视数据
         DataCache dataCache = SQLite.select()
@@ -340,11 +337,7 @@ public class ResourceUtils {
         return list;
     }
 
-    public static List<VideoDetail> search(String key, UrlResources sources) {
-        if (sources==null) {
-            sources=getUrlSource().get("zuida");
-        }
-
+    public static List<VideoDetail> search(String key, AppInfo.Resources sources) {
         StringBuilder ids = new StringBuilder();
         for (VideoIndex videoIndex : getVideoIndex(key, "", "", sources)) {
             ids.append(videoIndex.getId()).append(",");

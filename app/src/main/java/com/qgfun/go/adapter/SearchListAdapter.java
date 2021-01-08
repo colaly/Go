@@ -79,7 +79,7 @@ public class SearchListAdapter extends ArrayAdapter<VideoDetail> {
             holder.note.setText(item.getNote());
         }
         holder.actor.setText(String.format("演员：%s", item.getActor()));
-        holder.form.setText(String.format("来源：%s", item.getUrlResources().getFrom()));
+        holder.form.setText(String.format("来源：%s", item.getResources().getName()));
         holder.type.setText(String.format("类型：%s", item.getType()));
         holder.last.setText(String.format("更新：%s", item.getLast()));
         Log.i(item.getPic());

@@ -14,8 +14,8 @@ import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
 import com.qgfun.go.adapter.SearchListAdapter;
 import com.qgfun.go.base.BaseActivity;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.HistoryData;
-import com.qgfun.go.entity.UrlResources;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.Log;
 import com.qgfun.go.util.ResourceUtils;
@@ -27,7 +27,6 @@ import com.xuexiang.xui.widget.statelayout.MultipleStatusView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
@@ -183,10 +182,12 @@ public class SearchActivity extends BaseActivity {
         mAdapter.clear();
         mStatusView.showLoading();
         AtomicInteger count=new AtomicInteger(0);
-        for (Map.Entry<String, UrlResources> entry : ResourceUtils.getUrlSource().entrySet()) {
+        AppInfo appInfo = ResourceUtils.getAppInfo(SearchActivity.this);
+        List<AppInfo.Resources> resources = appInfo.getResources();
+        for (AppInfo.Resources item:resources) {
             count.incrementAndGet();
             Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {
-                emitter.onNext(ResourceUtils.search(mSearchKey, entry.getValue()));
+                emitter.onNext(ResourceUtils.search(mSearchKey, item));
                 emitter.onComplete();
             }).subscribeOn(Schedulers.io())
                     .subscribeOn(Schedulers.io())
@@ -209,7 +210,7 @@ public class SearchActivity extends BaseActivity {
                                 mTagLayout.setVisibility(View.GONE);
                                 mTipLayout.setVisibility(View.GONE);
                             }else {
-                                if (!hasData && count.get()>=ResourceUtils.getUrlSource().size()) {
+                                if (!hasData && count.get()>=resources.size()) {
                                     mStatusView.showEmpty();
                                     mTagLayout.setVisibility(View.VISIBLE);
                                     mTipLayout.setVisibility(View.VISIBLE);
@@ -220,7 +221,7 @@ public class SearchActivity extends BaseActivity {
                         @Override
                         public void onError(Throwable e) {
                             Logger.e(e.getMessage());
-                            if (!hasData && count.get()>=ResourceUtils.getUrlSource().size()) {
+                            if (!hasData && count.get()>=resources.size()) {
                                 mStatusView.showError();
                                 mTagLayout.setVisibility(View.VISIBLE);
                                 mTipLayout.setVisibility(View.VISIBLE);

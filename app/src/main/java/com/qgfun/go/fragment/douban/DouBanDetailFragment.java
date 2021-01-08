@@ -14,7 +14,6 @@ import com.qgfun.go.R;
 import com.qgfun.go.adapter.SearchListAdapter;
 import com.qgfun.go.base.BaseMainFragment;
 import com.qgfun.go.entity.DouBanVideoInfo;
-import com.qgfun.go.entity.UrlResources;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.Log;
 import com.qgfun.go.util.ResourceUtils;
@@ -99,7 +98,7 @@ public class DouBanDetailFragment extends BaseMainFragment {
         mAdapter.clear();
         mStatusView.showLoading();
         AtomicInteger count=new AtomicInteger(0);
-        for (Map.Entry<String, UrlResources> entry : ResourceUtils.getUrlSource().entrySet()) {
+        for (Map.Entry<String, UrlResources> entry : ResourceUtils.getAppInfo().entrySet()) {
             count.incrementAndGet();
             Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {
                 emitter.onNext(ResourceUtils.search(key, entry.getValue()));
@@ -119,7 +118,7 @@ public class DouBanDetailFragment extends BaseMainFragment {
                         public void onNext(List<VideoDetail> videoDetails) {
                             Log.i("Observer onNext");
                             if (videoDetails == null || videoDetails.size() == 0) {
-                                if (!hasData && count.get()>=ResourceUtils.getUrlSource().size()) {
+                                if (!hasData && count.get()>=ResourceUtils.getAppInfo().size()) {
                                     mStatusView.showEmpty();
                                 }
                             } else {
@@ -133,7 +132,7 @@ public class DouBanDetailFragment extends BaseMainFragment {
                         public void onError(Throwable e) {
                             Log.i("Observer onError");
                             Log.e("getData：%s", e.getMessage());
-                            if (!hasData && count.get()>=ResourceUtils.getUrlSource().size()) {
+                            if (!hasData && count.get()>=ResourceUtils.getAppInfo().size()) {
                                 mStatusView.showError();
                             } else {
 

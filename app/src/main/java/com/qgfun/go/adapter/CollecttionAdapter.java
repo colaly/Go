@@ -16,9 +16,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.qgfun.go.R;
 import com.qgfun.go.activity.VideoPlayerActivity;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.DataHolder;
 import com.qgfun.go.entity.PlayHistory;
-import com.qgfun.go.entity.UrlResources;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.ListStringUtils;
 import com.qgfun.go.util.Log;
@@ -94,10 +94,10 @@ public class CollecttionAdapter extends ArrayAdapter<PlayHistory> {
         item.setDirector(playHistory.getDirector());
         item.setDes(playHistory.getDes());
         item.setVideoUrls(ListStringUtils.json2List(playHistory.getVideoUrls()));
-        Log.i("playHistory.getUrlReSources():%s",playHistory.getUrlReSources());
-        UrlResources urlResources = UrlResources.jsonToObject(playHistory.getUrlReSources());
+        Log.i("playHistory.getUrlReSources():%s",playHistory.getResources());
+        AppInfo.Resources urlResources = AppInfo.Resources.jsonToObject(playHistory.getResources());
         Log.i("UrlResources:%s",urlResources.toString());
-        item.setUrlResources(urlResources);
+        item.setResources(urlResources);
         item.setLast(playHistory.getLast());
 
         Log.i("VideoDetail:%s", item.toString());
@@ -105,7 +105,7 @@ public class CollecttionAdapter extends ArrayAdapter<PlayHistory> {
         holder.director.setText(String.format("导演：%s", item.getDirector()));
         holder.note.setText(item.getNote());
         holder.actor.setText(String.format("演员：%s", item.getActor()));
-        holder.form.setText(String.format("来源：%s", item.getUrlResources().getFrom()));
+        holder.form.setText(String.format("来源：%s", item.getResources().getName()));
         holder.type.setText(String.format("类型：%s", item.getType()));
         holder.last.setText(String.format("更新：%s", item.getLast()));
         Glide.with(mContext)

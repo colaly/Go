@@ -36,7 +36,7 @@ public class PlayHistory extends BaseModel {
     @Column
     String videoUrls;
     @Column
-    String urlReSources;
+    String resources;
     @Column
     String last;
 
@@ -120,12 +120,12 @@ public class PlayHistory extends BaseModel {
         this.videoUrls = videoUrls;
     }
 
-    public String getUrlReSources() {
-        return urlReSources;
+    public String getResources() {
+        return resources;
     }
 
-    public void setUrlReSources(String urlReSources) {
-        this.urlReSources = urlReSources;
+    public void setResources(String resources) {
+        this.resources = resources;
     }
 
     public String getLast() {
