@@ -19,7 +19,6 @@
 .idea/vcs.xml
 app/release/
 dkplayer-ui/.gitignore
-gradle.properties
 app/.gitignore
 app/src/androidTest/
 app/src/test/
