@@ -13,6 +13,7 @@ $(document).ready(function() {
 
       $("a[href*=\"down.php\"]").remove();
       $("a[href*=\"tid=ipv6\"]").parent().parent().remove();
+      $("a[href*=\"?tid=gt\"]").parent().parent().remove();
       $("a[href*=\"tid=wintv123\"]").parent().parent().remove();
 
       $(".ui-listview").prev().hide();

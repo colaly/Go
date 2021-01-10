@@ -14,6 +14,7 @@ import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
 import com.qgfun.go.adapter.CollecttionAdapter;
 import com.qgfun.go.base.BaseMainFragment;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.PlayHistory;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.DrawableUtils;
@@ -92,7 +93,7 @@ public class CollectFragment extends BaseMainFragment {
         mListView.setAdapter(adapter);
         for (PlayHistory info : list) {
             Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {
-                emitter.onNext(ResourceUtils.getVideoDetail(info.getVid(), UrlResources.jsonToObject(info.getResources())));
+                emitter.onNext(ResourceUtils.getVideoDetail(info.getVid(), AppInfo.Resources.jsonToObject(info.getResources())));
                 emitter.onComplete();
             }).subscribeOn(Schedulers.io())
                     .subscribeOn(Schedulers.io())

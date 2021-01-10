@@ -13,6 +13,7 @@ import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
 import com.qgfun.go.adapter.SearchListAdapter;
 import com.qgfun.go.base.BaseMainFragment;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.DouBanVideoInfo;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.Log;
@@ -98,10 +99,11 @@ public class DouBanDetailFragment extends BaseMainFragment {
         mAdapter.clear();
         mStatusView.showLoading();
         AtomicInteger count=new AtomicInteger(0);
-        for (Map.Entry<String, UrlResources> entry : ResourceUtils.getAppInfo().entrySet()) {
+        List<AppInfo.Resources> resources = ResourceUtils.getAppInfo(_mActivity).getResources();
+        for (AppInfo.Resources item : resources) {
             count.incrementAndGet();
             Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {
-                emitter.onNext(ResourceUtils.search(key, entry.getValue()));
+                emitter.onNext(ResourceUtils.search(key, item));
                 emitter.onComplete();
             }).subscribeOn(Schedulers.io())
                     .subscribeOn(Schedulers.io())
@@ -118,7 +120,7 @@ public class DouBanDetailFragment extends BaseMainFragment {
                         public void onNext(List<VideoDetail> videoDetails) {
                             Log.i("Observer onNext");
                             if (videoDetails == null || videoDetails.size() == 0) {
-                                if (!hasData && count.get()>=ResourceUtils.getAppInfo().size()) {
+                                if (!hasData && count.get()>=resources.size()) {
                                     mStatusView.showEmpty();
                                 }
                             } else {
@@ -132,7 +134,7 @@ public class DouBanDetailFragment extends BaseMainFragment {
                         public void onError(Throwable e) {
                             Log.i("Observer onError");
                             Log.e("getData：%s", e.getMessage());
-                            if (!hasData && count.get()>=ResourceUtils.getAppInfo().size()) {
+                            if (!hasData && count.get()>=resources.size()) {
                                 mStatusView.showError();
                             } else {
 

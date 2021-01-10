@@ -1,6 +1,7 @@
 package com.qgfun.go.util;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.alibaba.fastjson.JSON;
 import com.lzy.okgo.OkGo;
@@ -46,11 +47,9 @@ public class ResourceUtils {
                 .where(DataCache_Table.url.eq(changeUrl(url)))
                 .querySingle();
         boolean isEmpty = dataCache == null;
-        if (isEmpty || System.currentTimeMillis() / 1000 - dataCache.getLast() > 3600) {
+        if (isEmpty || System.currentTimeMillis() / 1000 - dataCache.getLast() > 1*60) {
             try {
                 String result = OkGo.<ResponseBody>get(url)
-                        .cacheMode(CacheMode.IF_NONE_CACHE_REQUEST)
-                        .cacheTime(3600)
                         .retryCount(3)
                         .execute().body().string();
                 appInfo = JSON.parseObject(result, AppInfo.class);
@@ -260,7 +259,7 @@ public class ResourceUtils {
         return list;
     }
 
-    public static List<VideoDetail> newVideo(AppInfo.Resources sources, String tid, String pg) {
+    public static List<VideoDetail> newVideo(AppInfo.Resources sources, int tid, String pg) {
         List<VideoDetail> list = new ArrayList<>();
         //影视数据
         DataCache dataCache = SQLite.select()
@@ -272,7 +271,7 @@ public class ResourceUtils {
         if (isEmpty || System.currentTimeMillis() / 1000 - dataCache.getLast() > 10 * 60) {
             try {
 
-                Document document = HtmlUtils.getHtml(String.format("%s?ac=videolist&t=%s&pg=%s", sources.getUrl(), tid, pg), false, "http://baidu.com");
+                Document document = HtmlUtils.getHtml(String.format("%s?ac=videolist&t=%d&pg=%s", sources.getUrl(), tid, pg), false, "http://baidu.com");
                 String pagecount = document.getElementsByTag("list").first().attr("pagecount");
                 //当前分类页码数据
                 DataCache dataCache1 = SQLite.select()

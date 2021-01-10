@@ -21,6 +21,7 @@ import com.qgfun.go.entity.DataCache;
 import com.qgfun.go.entity.DataCache_Table;
 import com.qgfun.go.entity.DataHolder;
 import com.qgfun.go.entity.VideoDetail;
+import com.qgfun.go.util.Log;
 import com.qgfun.go.util.NetTool;
 import com.qgfun.go.util.ResourceUtils;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -52,7 +53,7 @@ import static com.qgfun.go.util.ResourceUtils.getAppInfo;
  * package name: com.qgfun.go.fragment.update
  */
 public class UpdatePagerFragment extends SupportFragment {
-    private Category mCategory;
+    private AppInfo.Resources.Category mCategory;
     private static final String KEY = "UpdateCategory";
 
     @BindView(R.id.ll_stateful)
@@ -71,12 +72,13 @@ public class UpdatePagerFragment extends SupportFragment {
     private int current = 1;
     AppInfo.Resources resources;
 
-    public static UpdatePagerFragment newInstance(@NonNull Category category) {
+    public static UpdatePagerFragment newInstance(@NonNull AppInfo.Resources.Category category) {
         UpdatePagerFragment fragment = new UpdatePagerFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(KEY, category);
+        Log.i("UpdatePagerFragment category:%s",category);
+        bundle.putSerializable(KEY, category);
         fragment.setArguments(bundle);
-        Logger.i("category:%s", category.toString());
+        Logger.i("category:%s", category);
         return fragment;
     }
 
@@ -84,7 +86,7 @@ public class UpdatePagerFragment extends SupportFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
-        mCategory = bundle.getParcelable(KEY);
+        mCategory = (AppInfo.Resources.Category) bundle.getSerializable(KEY);
 
     }
 
@@ -107,7 +109,7 @@ public class UpdatePagerFragment extends SupportFragment {
         if (bundle == null) {
             bundle = new Bundle();
         }
-        bundle.putParcelable(KEY, mCategory);
+        bundle.putSerializable(KEY, mCategory);
     }
 
     @Nullable
@@ -118,7 +120,7 @@ public class UpdatePagerFragment extends SupportFragment {
         View view = inflater.inflate(R.layout.fragment_view_page, container, false);
         ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
-        mCategory = bundle.getParcelable(KEY);
+        mCategory = (AppInfo.Resources.Category) bundle.getSerializable(KEY);
         DataCache dataCache = SQLite.select()
                 //查询第一个
                 .from(DataCache.class)

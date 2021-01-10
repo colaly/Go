@@ -4,6 +4,7 @@ package com.qgfun.go.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.fastjson.JSON;
 import com.orhanobut.logger.Logger;
 
 import static com.qgfun.go.App.isDebug;
@@ -14,7 +15,7 @@ import static com.qgfun.go.App.isDebug;
 public class Log {
     public static void i(@NonNull String message, @Nullable Object... args) {
         if (isDebug()) {
-            Logger.i(">>>"+message+"<<<timestamp:"+System.currentTimeMillis()/1000,args );
+            Logger.i(">>>"+message+"<<<timestamp:"+System.currentTimeMillis()/1000, JSON.toJSONString(args));
         }else {
             Logger.i("趣享GO",System.currentTimeMillis()/1000+"");
         }
@@ -22,7 +23,7 @@ public class Log {
 
     public static void d(@NonNull String message, @Nullable Object... args) {
         if (isDebug()) {
-            Logger.d(">>>"+message+"<<<timestamp:"+System.currentTimeMillis()/1000,args );
+            Logger.d(">>>"+message+"<<<timestamp:"+System.currentTimeMillis()/1000,JSON.toJSONString(args) );
         }else {
             Logger.d("趣享GO",System.currentTimeMillis()/1000+"");
         }
@@ -30,7 +31,7 @@ public class Log {
 
     public static void e(@NonNull String message, @Nullable Object... args) {
         if (isDebug()) {
-            Logger.e(">>>"+message+"<<<timestamp:"+System.currentTimeMillis()/1000,args );
+            Logger.e(">>>"+message+"<<<timestamp:"+System.currentTimeMillis()/1000,JSON.toJSONString(args) );
         }else {
             Logger.e("趣享GO",System.currentTimeMillis()/1000+"");
         }

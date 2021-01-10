@@ -60,7 +60,8 @@ public class TvIndexFragment extends BaseMainFragment {
     private AgentWeb mAgentWeb;
     private CustomWebViewClient customWebViewClient;
     private boolean isHidden =true;
-    private String mUrl = "https://player.ggiptv.com/iptv.php";
+    //private String mUrl = "http://player.ggiptv.com/iptv.php";
+    private String mUrl = "http://iptv200.com/iptv.php";
     private JsInterface mJsInterface;
 
     public static TvIndexFragment newInstance() {

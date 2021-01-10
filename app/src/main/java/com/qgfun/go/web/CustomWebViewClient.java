@@ -31,6 +31,7 @@ import com.qgfun.go.event.WebViewStatusEvent;
 import com.qgfun.go.util.ClipboardTool;
 import com.qgfun.go.util.Log;
 import com.qgfun.go.util.NetTool;
+import com.qgfun.go.util.UrlRegUtils;
 
 import org.apache.common.codec.binary.Base64;
 import org.greenrobot.eventbus.EventBus;
@@ -145,11 +146,11 @@ public class CustomWebViewClient extends WebViewClient {
     public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
         super.onReceivedError(view, request, error);
         int statusCode = error.getErrorCode();
-        Log.i("onReceivedError", "-----" + request.getUrl().toString() + "-----" + statusCode);
+        Log.i("onReceivedError:%s", request.getUrl().toString() ,statusCode);
         if (request.isForMainFrame()) {
-            Log.i("onReceivedError", "-----webError visible-----");
+            Log.i("onReceivedError webError visible ");
             showWebStatus(ViewStatusEnum.ERROR);
-            Log.i("onReceivedError", "》》》onReceivedError");
+            Log.i("onReceivedError onReceivedError");
         }
     }
 
@@ -239,27 +240,55 @@ public class CustomWebViewClient extends WebViewClient {
     }
 
     private WebResourceResponse myIntercept(String url) {
-        ResourceInfo resourceInfo = null;
-        if (url.contains("favicon.ico")) {
+        ResourceInfo resourceInfo=null;
+        if (UrlRegUtils.allMatcher(url,"favicon.ico")) {
+            Log.i("allMatcher:%s",url);
             resourceInfo = new ResourceInfo("static/favicon.ico", "image/x-icon");
-        } else if (url.contains("z_stat.php") || url.contains("googletagmanager.com") || (url.contains("iptv") && url.contains("common.js"))) {
+        }
+        else if (UrlRegUtils.orMatcher(url,"z_stat.php","googletagmanager.com")||UrlRegUtils.allMatcher(url,"iptv","common.js")) {
+            Log.i("allMatcher:%s",url);
             resourceInfo = new ResourceInfo("static/qgstatic.js", "application/javascript");
-        } else if (url.contains("jquery") && url.contains(".js")) {
-            String path = "jquery.min.js";
-            if (url.contains("mobile")) {
-                path = "jquery.mobile.min.js";
-            } else if (url.contains("ui")) {
-                path = "jquery.ui.min.js";
-            } else if (url.contains("cookie")) {
-                path = "jquery.cookie.min.js";
-            } else if (url.contains("base64")) {
-                path = "jquery.base64.min.js";
-            } else if (url.contains("slim")) {
-                path = "jquery.slim.min.js";
-            } else if (url.contains("lazyload")) {
-                path = "jquery.lazyload.js";
-            }
-            resourceInfo = new ResourceInfo("static/" + path, "application/javascript");
+        }
+        else if (UrlRegUtils.allMatcher(url,"jquery","mobile","js")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/jquery.mobile-1.3.0.min.js", "application/javascript");
+        }
+        else if (UrlRegUtils.allMatcher(url,"jquery","mobile","css")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/jquery.mobile.min.css", "text/css");
+        }
+        else if (UrlRegUtils.allMatcher(url,"jquery","ui","js")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/jquery.ui.min.js", "application/javascript");
+        }
+        else if (UrlRegUtils.allMatcher(url,"jquery","cookie","js")){
+            resourceInfo = new ResourceInfo("static/jquery.cookie.min.js", "application/javascript");
+        }
+        else if (UrlRegUtils.allMatcher(url,"jquery","base64","js")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/jquery.base64.min.js", "application/javascript");
+        }
+        else if (UrlRegUtils.allMatcher(url,"jquery","slim","js")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/jquery.slim.min.js", "application/javascript");
+        }else if (UrlRegUtils.allMatcher(url,"ajax-loader.gif")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/ajax-loader.gif", "image/*");
+        }else if (UrlRegUtils.allMatcher(url,"icons-36-white.png")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/icons-36-white.png", "image/*");
+        }else if (UrlRegUtils.allMatcher(url,"icons-36-black.png")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/icons-36-black.png", "image/*");
+        }else if (UrlRegUtils.allMatcher(url,"icons-18-white.png")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/icons-18-white.png", "image/*");
+        }else if (UrlRegUtils.allMatcher(url,"icons-18-black.png")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/icons-18-black.png", "image/*");
+        }else if (UrlRegUtils.allMatcher(url,"jquery",".min",".js")){
+            Log.i("allMatcher:%s",url);
+            resourceInfo = new ResourceInfo("static/jquery.min.js", "application/javascript");
         }
         if (resourceInfo != null) {
             try {

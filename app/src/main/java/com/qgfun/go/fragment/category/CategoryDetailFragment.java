@@ -13,6 +13,7 @@ import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
 import com.qgfun.go.adapter.SearchListAdapter;
 import com.qgfun.go.base.BaseMainFragment;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.DouBanVideoInfo;
 import com.qgfun.go.entity.VideoDetail;
 import com.qgfun.go.util.Log;
@@ -40,7 +41,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  * @author LLY
  * date: 2020/4/7 13:15
  * package name: com.qgfun.beauty.fragment
- * description：TODO
  */
 public class CategoryDetailFragment extends BaseMainFragment {
     @BindView(R.id.title)
@@ -99,10 +99,11 @@ public class CategoryDetailFragment extends BaseMainFragment {
         mAdapter.clear();
         mStatusView.showLoading();
         AtomicInteger count=new AtomicInteger(0);
-        for (Map.Entry<String, UrlResources> entry : ResourceUtils.getAppInfo().entrySet()) {
+        List<AppInfo.Resources> resources = ResourceUtils.getAppInfo(_mActivity).getResources();
+        for (AppInfo.Resources item : resources) {
             count.incrementAndGet();
             Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {
-                emitter.onNext(ResourceUtils.search(key, entry.getValue()));
+                emitter.onNext(ResourceUtils.search(key, item));
                 emitter.onComplete();
             }).subscribeOn(Schedulers.io())
                     .subscribeOn(Schedulers.io())
@@ -117,9 +118,9 @@ public class CategoryDetailFragment extends BaseMainFragment {
 
                         @Override
                         public void onNext(List<VideoDetail> videoDetails) {
-                            Log.i("Observer", "onNext");
+                            Log.i("Observer onNext");
                             if (videoDetails == null || videoDetails.size() == 0) {
-                                if (!hasData && count.get()>=ResourceUtils.getAppInfo().size()) {
+                                if (!hasData && count.get()>=resources.size()) {
                                     mStatusView.showEmpty();
                                 }
                             } else {
@@ -131,9 +132,8 @@ public class CategoryDetailFragment extends BaseMainFragment {
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.i("Observer", "onError");
-                            Log.e("getData", e.getMessage());
-                            if (!hasData && count.get()>=ResourceUtils.getAppInfo().size()) {
+                            Log.i("Observer onError:%s",e.getMessage());
+                            if (!hasData && count.get()>=resources.size()) {
                                 mStatusView.showError();
                             } else {
 
@@ -143,7 +143,7 @@ public class CategoryDetailFragment extends BaseMainFragment {
 
                         @Override
                         public void onComplete() {
-                            Log.i("Observer", "onComplete");
+                            Log.i("Observer onComplete");
                             disposable.dispose();
                         }
                     });

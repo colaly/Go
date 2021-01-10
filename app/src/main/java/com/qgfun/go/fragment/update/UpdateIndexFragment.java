@@ -12,12 +12,16 @@ import com.orhanobut.logger.Logger;
 import com.qgfun.go.R;
 import com.qgfun.go.adapter.UpdatePagerFragmentAdapter;
 import com.qgfun.go.base.BaseMainFragment;
+import com.qgfun.go.entity.AppInfo;
 import com.qgfun.go.entity.CategoriesData;
 import com.qgfun.go.entity.Category;
+import com.qgfun.go.util.Log;
+import com.qgfun.go.util.ResourceUtils;
 import com.xuexiang.xui.utils.DensityUtils;
 import com.xuexiang.xui.widget.tabbar.TabSegment;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,17 +64,22 @@ public class UpdateIndexFragment extends BaseMainFragment {
 
     private void initView() {
 
-
-        List<Category> categories = CategoriesData.getUpdateCategories();
+        AppInfo appInfo = ResourceUtils.getAppInfo(_mActivity);
+        List<AppInfo.Resources> resources = appInfo.getResources();
+        int size = resources.size();
+        int index=appInfo.getIndex();
+        AppInfo.Resources resource = appInfo.getResources().get(index >= size ? 0 : index);
+        List<AppInfo.Resources.Category> categories = resource.getCategory().stream().filter(AppInfo.Resources.Category::getShow).collect(Collectors.toList());
         mViewPager.setAdapter(new UpdatePagerFragmentAdapter(getChildFragmentManager(), categories));
 
         Logger.e("----initView end-----");
-        for (Category categorie :categories) {
-            mTabSegment.addTab(new TabSegment.Tab(categorie.getCategory()));
+        for (AppInfo.Resources.Category categorie :categories) {
+            mTabSegment.addTab(new TabSegment.Tab(categorie.getName()));
+            Log.i("categorie %s",categorie);
         }
         int space = DensityUtils.dp2px(_mActivity, 16);
         mTabSegment.setHasIndicator(true);
-        mTabSegment.setMode(TabSegment.MODE_FIXED);
+        mTabSegment.setMode(TabSegment.MODE_SCROLLABLE);
         mTabSegment.setItemSpaceInScrollMode(space);
         mTabSegment.setupWithViewPager(mViewPager, false);
         mTabSegment.setPadding(space, 0, space, 0);
