@@ -79,7 +79,11 @@ public class UpdateIndexFragment extends BaseMainFragment {
         }
         int space = DensityUtils.dp2px(_mActivity, 16);
         mTabSegment.setHasIndicator(true);
-        mTabSegment.setMode(TabSegment.MODE_SCROLLABLE);
+        if (categories.size()>6){
+            mTabSegment.setMode(TabSegment.MODE_SCROLLABLE);
+        }else {
+            mTabSegment.setMode(TabSegment.MODE_FIXED);
+        }
         mTabSegment.setItemSpaceInScrollMode(space);
         mTabSegment.setupWithViewPager(mViewPager, false);
         mTabSegment.setPadding(space, 0, space, 0);

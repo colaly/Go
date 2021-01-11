@@ -24,3 +24,6 @@ app/src/androidTest/
 app/src/test/
 /app/build/
 /.idea/
+/app/proguardMapping.txt
+/app/seeds.txt
+/app/unused.txt

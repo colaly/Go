@@ -28,6 +28,7 @@ import com.xuexiang.xui.widget.statelayout.MultipleStatusView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -183,7 +184,8 @@ public class SearchActivity extends BaseActivity {
         mStatusView.showLoading();
         AtomicInteger count=new AtomicInteger(0);
         AppInfo appInfo = ResourceUtils.getAppInfo(SearchActivity.this);
-        List<AppInfo.Resources> resources = appInfo.getResources();
+
+        List<AppInfo.Resources> resources = appInfo.getResources().stream().filter(AppInfo.Resources::getStatus).collect(Collectors.toList());
         for (AppInfo.Resources item:resources) {
             count.incrementAndGet();
             Observable.create((ObservableOnSubscribe<List<VideoDetail>>) emitter -> {

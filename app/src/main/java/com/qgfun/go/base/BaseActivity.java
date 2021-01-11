@@ -44,7 +44,7 @@ public abstract class BaseActivity extends SupportActivity implements ICallback,
     protected void onResume() {
         super.onResume();
         Beta.checkUpgrade(false, true);
-        /*if (EasyProtectorLib.checkIsRunningInEmulator(this, null)) {
+        if (EasyProtectorLib.checkIsRunningInEmulator(this, null)) {
             XToast.error(this,"本应用不支持虚拟机环境使用", XToast.LENGTH_LONG).show();
             kill();
             return;
@@ -69,7 +69,6 @@ public abstract class BaseActivity extends SupportActivity implements ICallback,
         if (!NetTool.isAvailable(this)) {
             XToast.error(this, "当前网络不可用").show();
         }
-*/
     }
 
     /**
